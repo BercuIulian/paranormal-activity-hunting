@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "p9IRvkQaNitFgFtFocWo4XoF7l3VYR9tgjCAFofCwDk=",
+  "Source": "SessionManagement.API",
+  "BasePath": "_content/SessionManagement.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
