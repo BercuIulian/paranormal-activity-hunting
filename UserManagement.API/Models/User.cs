@@ -13,8 +13,8 @@ namespace UserManagement.API.Models
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public int ExperiencePoints { get; set; }
-        public List<string> Achievements { get; set; }
-        public List<string> Equipment { get; set; }
+        public List<string> CompletedChallenges { get; set; } = new();
+        public List<string> Equipment { get; set; } = new();
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

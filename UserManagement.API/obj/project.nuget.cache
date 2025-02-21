@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zhQDSJ1XSzLTTJVZ5BkJ0dRex9d6seefowTryLcIO8t+skL/TAaZLgaOJH9hMKRP+FQC9XxlEAFupjlUGDbglA==",
+  "dgSpecHash": "HqI/hMWfx7d9kZi3klbxgQCKJw7o0ZHtSgW3wxh8UcamPGrCclyoDzUhILCAjf++LGa3zokjmF8KPM3mxSMJcg==",
   "success": true,
   "projectFilePath": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\UserManagement.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\iberc\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\iberc\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\iberc\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.4\\microsoft.aspnetcore.openapi.8.0.4.nupkg.sha512",
     "C:\\Users\\iberc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

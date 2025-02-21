@@ -37,3 +37,5 @@ C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribu
 C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\UserManagement.API\obj\Debug\net8.0\UserManagement.API.pdb
 C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\UserManagement.API\obj\Debug\net8.0\UserManagement.API.genruntimeconfig.cache
 C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\UserManagement.API\obj\Debug\net8.0\ref\UserManagement.API.dll
+C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\UserManagement.API\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\UserManagement.API\obj\Debug\net8.0\UserManagement.API.sourcelink.json

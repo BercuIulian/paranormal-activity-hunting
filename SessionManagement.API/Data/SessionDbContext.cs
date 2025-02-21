@@ -17,10 +17,8 @@ namespace SessionManagement.API.Data
             modelBuilder.Entity<Session>()
                 .Property(s => s.ParticipantIds)
                 .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
-                        .Select(id => Guid.Parse(id))
-                        .ToList());
+                    v => string.Join(',', v),  // Convert List<string> to a comma-separated string
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()); // Convert back to List<string>
         }
     }
 }

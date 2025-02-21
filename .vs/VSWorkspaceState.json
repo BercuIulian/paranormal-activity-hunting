@@ -3,14 +3,14 @@
     "",
     "\\ApiGateway",
     "\\SessionManagement.API",
-    "\\SessionManagement.API\\Data",
+    "\\SessionManagement.API\\Controllers",
+    "\\SessionManagement.API\\DTOs",
     "\\SessionManagement.API\\Models",
     "\\SessionManagement.API\\Properties",
     "\\UserManagement.API",
-    "\\UserManagement.API\\Configuration",
-    "\\UserManagement.API\\Models",
+    "\\UserManagement.API\\Controllers",
     "\\UserManagement.API\\Properties"
   ],
-  "SelectedNode": "\\ParanormalActivityHunting.sln",
+  "SelectedNode": "\\ApiGateway\\app.py",
   "PreviewInSolutionExplorer": false
 }

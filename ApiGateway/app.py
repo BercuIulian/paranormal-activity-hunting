@@ -22,17 +22,10 @@ app.add_middleware(
 # Create HTTP client
 client = httpx.AsyncClient()
 
-async def forward_request(request: Request, service_url: str) -> JSONResponse:
+async def forward_request(request: Request, service_url: str, path: str) -> JSONResponse:
     try:
-        # Get the target path
-        path = request.url.path
-        if path.startswith("/user"):
-            path = path[5:]  # Remove /user prefix
-        elif path.startswith("/session"):
-            path = path[8:]  # Remove /session prefix
-            
         # Construct full URL
-        target_url = f"{service_url}{path}"
+        target_url = f"{service_url}/{path}"
         
         # Get request body
         body = await request.body()
@@ -60,20 +53,46 @@ async def forward_request(request: Request, service_url: str) -> JSONResponse:
         )
 
 # User Service Routes
-@app.api_route("/user/{path:path}", methods=["GET", "POST", "PUT", "DELETE"])
-async def user_service_proxy(request: Request, path: str):
-    """
-    Proxy all /user/* requests to the User Management Service
-    """
-    return await forward_request(request, USER_SERVICE_URL)
+@app.post("/user/register")
+async def user_register(request: Request):
+    return await forward_request(request, USER_SERVICE_URL, "user/register")
+
+@app.post("/user/login")
+async def user_login(request: Request):
+    return await forward_request(request, USER_SERVICE_URL, "user/login")
+
+@app.get("/user/{id}")
+async def get_user(request: Request, id: str):
+    return await forward_request(request, USER_SERVICE_URL, f"user/{id}")
+
+@app.get("/user/challenges")
+async def get_challenges(request: Request):
+    return await forward_request(request, USER_SERVICE_URL, "user/challenges")
+
+@app.get("/user/status")
+async def user_status(request: Request):
+    return await forward_request(request, USER_SERVICE_URL, "user/status")
 
 # Session Service Routes
-@app.api_route("/session/{path:path}", methods=["GET", "POST", "PUT", "DELETE"])
-async def session_service_proxy(request: Request, path: str):
-    """
-    Proxy all /session/* requests to the Session Management Service
-    """
-    return await forward_request(request, SESSION_SERVICE_URL)
+@app.post("/session/create")
+async def create_session(request: Request):
+    return await forward_request(request, SESSION_SERVICE_URL, "session/create")
+
+@app.get("/session/{id}")
+async def get_session(request: Request, id: str):
+    return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}")
+
+@app.post("/session/{id}/activate")
+async def activate_session(request: Request, id: str):
+    return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/activate")
+
+@app.get("/session/existing")
+async def get_existing_sessions(request: Request):
+    return await forward_request(request, SESSION_SERVICE_URL, "session/existing")
+
+@app.get("/session/status")
+async def session_status(request: Request):
+    return await forward_request(request, SESSION_SERVICE_URL, "session/status")
 
 @app.get("/health")
 async def health_check():

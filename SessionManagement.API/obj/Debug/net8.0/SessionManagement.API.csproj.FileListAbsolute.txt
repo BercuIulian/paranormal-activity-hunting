@@ -133,3 +133,4 @@ C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribu
 C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\SessionManagement.API\obj\Debug\net8.0\SessionManagement.API.pdb
 C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\SessionManagement.API\obj\Debug\net8.0\SessionManagement.API.genruntimeconfig.cache
 C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\SessionManagement.API\obj\Debug\net8.0\ref\SessionManagement.API.dll
+C:\Users\iberc\OneDrive\Desktop\Projects\sem 7\Programarea Aplicatiilor Distribuite\ParanormalActivityHunting\SessionManagement.API\obj\Debug\net8.0\SessionManagement.API.sourcelink.json
