@@ -4,13 +4,13 @@
     "\\ApiGateway",
     "\\SessionManagement.API",
     "\\SessionManagement.API\\Controllers",
-    "\\SessionManagement.API\\DTOs",
-    "\\SessionManagement.API\\Models",
-    "\\SessionManagement.API\\Properties",
+    "\\SessionManagement.API\\Data",
     "\\UserManagement.API",
     "\\UserManagement.API\\Controllers",
+    "\\UserManagement.API\\DTOs",
+    "\\UserManagement.API\\Models",
     "\\UserManagement.API\\Properties"
   ],
-  "SelectedNode": "\\ApiGateway\\app.py",
+  "SelectedNode": "\\UserManagement.API\\Controllers\\UserController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,3 +1,6 @@
+using SessionManagement.API.DTOs;
+using SessionManagement.API.Models;
+
 namespace SessionManagement.API.DTOs
 {
     public class CreateSessionDto
