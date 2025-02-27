@@ -8,20 +8,20 @@ namespace SessionManagement.API.DTOs
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Location { get; set; }
+        public string CreatorId { get; set; }
         public SessionType Type { get; set; }
         public SessionStatus Status { get; set; }
-        public string Location { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string CreatorId { get; set; }
         public ParanormalCategory Category { get; set; }
-        public int ParticipantCount { get; set; }
+        public int MaxParticipants { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
     public class SessionParticipantDto
     {
         public string UserId { get; set; }
         public ParticipantRole Role { get; set; }
-        public DateTime JoinedAt { get; set; }
     }
 
     public class SessionLogDto

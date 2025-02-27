@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 import uvicorn
+import json
 
 app = FastAPI(title="Paranormal Activity Hunting Gateway")
 
@@ -225,9 +226,9 @@ async def user_status(request: Request):
 
 # Session Service Routes
 # Session Creation Endpoints
-@app.post("/session/create")
-async def create_session(request: Request):
-    return await forward_request(request, SESSION_SERVICE_URL, "session/create")
+# @app.post("/session/create")
+# async def create_session(request: Request):
+#     return await forward_request(request, SESSION_SERVICE_URL, "session/create")
 
 @app.post("/session/create/quick")
 async def create_quick_session(request: Request):
@@ -300,12 +301,26 @@ async def activate_session(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/activate")
 
 @app.post("/session/activate/user/{id}")
-async def activate_session_user(request: Request, id: str):
-    return await forward_request(request, SESSION_SERVICE_URL, f"session/activate/user/{id}")
+async def activate_user_session(id: str, request: Request):
+    try:
+        body = await request.json()
+        return await forward_request(request, SESSION_SERVICE_URL, f"session/activate/user/{id}")
+    except json.JSONDecodeError:
+        return JSONResponse(
+            content={"error": "Invalid JSON in request body"},
+            status_code=400
+        )
 
 @app.post("/session/activate/challenge/{id}")
-async def activate_session_challenge(request: Request, id: str):
-    return await forward_request(request, SESSION_SERVICE_URL, f"session/activate/challenge/{id}")
+async def activate_challenge(id: str, request: Request):
+    try:
+        body = await request.json()
+        return await forward_request(request, SESSION_SERVICE_URL, f"session/activate/challenge/{id}")
+    except json.JSONDecodeError:
+        return JSONResponse(
+            content={"error": "Invalid JSON in request body"},
+            status_code=400
+        )
 
 @app.post("/session/activate/recent/{id}")
 async def activate_session_recent(request: Request, id: str):

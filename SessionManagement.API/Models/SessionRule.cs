@@ -14,10 +14,11 @@ namespace SessionManagement.API.Models
 
     public enum RuleCategory
     {
-        Safety,
-        Equipment,
-        Communication,
-        Protocol,
-        Behavior
+        Safety = 0,
+        Equipment = 1,
+        Communication = 2,
+        Investigation = 3,
+        Behavior = 4,
+        Other = 5
     }
 }

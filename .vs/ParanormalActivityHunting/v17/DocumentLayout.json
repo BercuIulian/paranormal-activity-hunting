@@ -3,12 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UserManagement.API\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Controllers\\SessionController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Controllers\\SessionController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\ApiGateway\\app.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApiGateway\\app.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\ApiGateway\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApiGateway\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionRulesDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionRulesDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionParticipant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Models\\SessionParticipant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDetailsDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionDetailsDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionCreateDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionCreateDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\Session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Models\\Session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionRule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Models\\SessionRule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UserManagement.API\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\DTOs\\UserDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,36 +71,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UserManagement.API\\DTOs\\RegisterDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Controllers\\SessionController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Controllers\\SessionController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\DTOs\\SocialLoginDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UserManagement.API\\DTOs\\SocialLoginDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionRulesDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionRulesDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDetailsDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionDetailsDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionCreateDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\DTOs\\SessionCreateDtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionRule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Models\\SessionRule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionParticipant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Models\\SessionParticipant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionLog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -83,16 +91,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Models\\RequiredEquipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\Session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SessionManagement.API\\Models\\Session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UserManagement.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\ApiGateway\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApiGateway\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -126,7 +126,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -134,15 +134,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Controllers\\UserController.cs",
               "RelativeToolTip": "UserManagement.API\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAD4BAAAAAAAAAAAwwGMBAAAJAAAA",
+              "ViewState": "AQIAAEwBAAAAAAAAAAAcwGMBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-21T08:27:21.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SessionController.cs",
+              "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Controllers\\SessionController.cs",
+              "RelativeDocumentMoniker": "SessionManagement.API\\Controllers\\SessionController.cs",
+              "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Controllers\\SessionController.cs",
+              "RelativeToolTip": "SessionManagement.API\\Controllers\\SessionController.cs",
+              "ViewState": "AQIAAAQBAAAAAAAAAAAAABoBAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T08:30:24.909Z",
               "EditorCaption": ""
             },
             {
@@ -153,14 +166,14 @@
               "RelativeDocumentMoniker": "ApiGateway\\app.py",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\ApiGateway\\app.py",
               "RelativeToolTip": "ApiGateway\\app.py",
-              "ViewState": "AQIAACYAAAAAAAAAAAAgwDkAAAAwAAAA",
+              "ViewState": "AQIAACQBAAAAAAAAAAAgwDUBAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2025-02-20T21:26:37.678Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "SocialLoginDto.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\DTOs\\SocialLoginDto.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\DTOs\\SocialLoginDto.cs",
@@ -168,51 +181,47 @@
               "RelativeToolTip": "UserManagement.API\\DTOs\\SocialLoginDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T16:33:57.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T16:33:57.254Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "SessionRulesDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionRulesDtos.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\DTOs\\SessionRulesDtos.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionRulesDtos.cs",
               "RelativeToolTip": "SessionManagement.API\\DTOs\\SessionRulesDtos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:21:46.91Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:21:46.91Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 5,
               "Title": "SessionDetailsDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDetailsDtos.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\DTOs\\SessionDetailsDtos.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDetailsDtos.cs",
               "RelativeToolTip": "SessionManagement.API\\DTOs\\SessionDetailsDtos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAjAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABIAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:21:22.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:21:22.914Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 7,
               "Title": "SessionCreateDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionCreateDtos.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\DTOs\\SessionCreateDtos.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionCreateDtos.cs",
               "RelativeToolTip": "SessionManagement.API\\DTOs\\SessionCreateDtos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAiAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAB0AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:20:53.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:20:53.395Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "RequiredEquipment.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\RequiredEquipment.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\Models\\RequiredEquipment.cs",
@@ -220,12 +229,11 @@
               "RelativeToolTip": "SessionManagement.API\\Models\\RequiredEquipment.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:18:06.004Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:18:06.004Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "SessionChallenge.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionChallenge.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\Models\\SessionChallenge.cs",
@@ -233,12 +241,11 @@
               "RelativeToolTip": "SessionManagement.API\\Models\\SessionChallenge.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:17:38.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:17:38.971Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "SessionLog.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionLog.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\Models\\SessionLog.cs",
@@ -246,38 +253,35 @@
               "RelativeToolTip": "SessionManagement.API\\Models\\SessionLog.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:17:13.268Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:17:13.268Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 9,
               "Title": "SessionRule.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionRule.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\Models\\SessionRule.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionRule.cs",
               "RelativeToolTip": "SessionManagement.API\\Models\\SessionRule.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:16:55.619Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:16:55.619Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 4,
               "Title": "SessionParticipant.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionParticipant.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\Models\\SessionParticipant.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\SessionParticipant.cs",
               "RelativeToolTip": "SessionManagement.API\\Models\\SessionParticipant.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:16:23.565Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:16:23.565Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 14,
               "Title": "Challenge.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Models\\Challenge.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\Models\\Challenge.cs",
@@ -285,12 +289,11 @@
               "RelativeToolTip": "UserManagement.API\\Models\\Challenge.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T08:25:50.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T08:25:50.57Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "ChallengeDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\DTOs\\ChallengeDtos.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\DTOs\\ChallengeDtos.cs",
@@ -298,12 +301,11 @@
               "RelativeToolTip": "UserManagement.API\\DTOs\\ChallengeDtos.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T11:59:40.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T11:59:40.223Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 13,
               "Title": "LoginDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\DTOs\\LoginDtos.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\DTOs\\LoginDtos.cs",
@@ -311,12 +313,11 @@
               "RelativeToolTip": "UserManagement.API\\DTOs\\LoginDtos.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T11:59:33.07Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T11:59:33.07Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 16,
               "Title": "RegisterDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\DTOs\\RegisterDtos.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\DTOs\\RegisterDtos.cs",
@@ -324,38 +325,23 @@
               "RelativeToolTip": "UserManagement.API\\DTOs\\RegisterDtos.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T11:59:21.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T11:59:21.058Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SessionController.cs",
-              "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Controllers\\SessionController.cs",
-              "RelativeDocumentMoniker": "SessionManagement.API\\Controllers\\SessionController.cs",
-              "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Controllers\\SessionController.cs",
-              "RelativeToolTip": "SessionManagement.API\\Controllers\\SessionController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T08:30:24.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 6,
               "Title": "SessionDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDtos.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\DTOs\\SessionDtos.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\DTOs\\SessionDtos.cs",
               "RelativeToolTip": "SessionManagement.API\\DTOs\\SessionDtos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADAAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T08:28:52.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T08:28:52.411Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "UserDtos.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\DTOs\\UserDtos.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\DTOs\\UserDtos.cs",
@@ -363,12 +349,11 @@
               "RelativeToolTip": "UserManagement.API\\DTOs\\UserDtos.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAwDAAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T08:26:25.885Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T08:26:25.885Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 2,
               "Title": "requirements.txt",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\ApiGateway\\requirements.txt",
               "RelativeDocumentMoniker": "ApiGateway\\requirements.txt",
@@ -376,7 +361,8 @@
               "RelativeToolTip": "ApiGateway\\requirements.txt",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-02-20T21:26:19.303Z"
+              "WhenOpened": "2025-02-20T21:26:19.303Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -416,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Program.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\Program.cs",
@@ -440,7 +426,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "SessionDbContext.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Data\\SessionDbContext.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\Data\\SessionDbContext.cs",
@@ -448,21 +434,19 @@
               "RelativeToolTip": "SessionManagement.API\\Data\\SessionDbContext.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAADUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T16:27:11.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-20T16:27:11.878Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 8,
               "Title": "Session.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\Session.cs",
               "RelativeDocumentMoniker": "SessionManagement.API\\Models\\Session.cs",
               "ToolTip": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\SessionManagement.API\\Models\\Session.cs",
               "RelativeToolTip": "SessionManagement.API\\Models\\Session.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGIAAAABAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAAMwCUAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T16:24:56.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-20T16:24:56.489Z"
             },
             {
               "$type": "Document",
@@ -490,7 +474,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 15,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\iberc\\OneDrive\\Desktop\\Projects\\sem 7\\Programarea Aplicatiilor Distribuite\\ParanormalActivityHunting\\UserManagement.API\\Models\\User.cs",
               "RelativeDocumentMoniker": "UserManagement.API\\Models\\User.cs",
@@ -498,8 +482,7 @@
               "RelativeToolTip": "UserManagement.API\\Models\\User.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T16:15:54.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-20T16:15:54.519Z"
             }
           ]
         }

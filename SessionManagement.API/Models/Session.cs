@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SessionManagement.API.Models
 {
@@ -77,6 +78,7 @@ namespace SessionManagement.API.Models
         Cancelled
     }
 
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ParanormalCategory
     {
         GhostHunt,

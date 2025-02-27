@@ -17,7 +17,6 @@ namespace SessionManagement.API.DTOs
         public string Description { get; set; }
         public string Location { get; set; }
         public string CreatorId { get; set; }
-        public List<string> InvitedUserIds { get; set; }
         public ParanormalCategory Category { get; set; }
     }
 
@@ -40,7 +39,7 @@ namespace SessionManagement.API.DTOs
         public string Location { get; set; }
         public string CreatorId { get; set; }
         public int MaxParticipants { get; set; }
-        public List<RequiredEquipmentDto> RequiredEquipment { get; set; }
         public ParanormalCategory Category { get; set; }
+        public List<RequiredEquipmentDto> RequiredEquipment { get; set; }
     }
 }
