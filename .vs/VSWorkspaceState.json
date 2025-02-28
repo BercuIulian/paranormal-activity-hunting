@@ -1,7 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ApiGateway",
+    "\\SessionManagement.API",
     "\\SessionManagement.API\\Controllers",
     "\\SessionManagement.API\\Data",
     "\\SessionManagement.API\\DTOs",
@@ -11,6 +11,6 @@
     "\\UserManagement.API\\Controllers",
     "\\UserManagement.API\\DTOs"
   ],
-  "SelectedNode": "\\UserManagement.API\\Program.cs",
+  "SelectedNode": "\\SessionManagement.API\\Dockerfile",
   "PreviewInSolutionExplorer": false
 }

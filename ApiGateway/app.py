@@ -86,10 +86,9 @@ async def forward_request(request: Request, service_url: str, path: str) -> JSON
 @app.on_event("startup")
 async def startup():
     redis_client = redis.Redis(
-        host=REDIS_HOST,  # Redis server address
-        port=REDIS_PORT,         # Redis server port
-        db=REDIS_DB,              # Redis database index
-        password=REDIS_PASSWORD,
+        host=os.getenv("REDIS_HOST", "redis"),  # Use environment variable with default
+        port=int(os.getenv("REDIS_PORT", "6379")),
+        db=0,
         decode_responses=True
     )
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")

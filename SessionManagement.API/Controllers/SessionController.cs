@@ -779,9 +779,18 @@ namespace SessionManagement.API.Controllers
         }
 
         [HttpGet("status")]
-        public ActionResult GetStatus()
+        public async Task<ActionResult> GetStatus()
         {
-            return Ok(new { status = "healthy" });
+            try
+            {
+                // Test database connection
+                var count = await _context.Sessions.CountAsync();
+                return Ok(new { status = "healthy", databaseConnection = "connected", sessionCount = count });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { status = "unhealthy", error = ex.Message });
+            }
         }
 
         // Helper method for distance calculation

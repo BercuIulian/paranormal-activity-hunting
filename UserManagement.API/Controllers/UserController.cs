@@ -521,9 +521,18 @@ namespace UserManagement.API.Controllers
 
 
         [HttpGet("status")]
-        public ActionResult GetStatus()
+        public async Task<ActionResult> GetStatus()
         {
-            return Ok(new { status = "healthy" });
+            try
+            {
+                // Test database connection
+                var count = await _users.CountDocumentsAsync(FilterDefinition<User>.Empty);
+                return Ok(new { status = "healthy", databaseConnection = "connected", documentCount = count });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { status = "unhealthy", error = ex.Message });
+            }
         }
 
         private UserResponseDto MapToUserResponse(User user)

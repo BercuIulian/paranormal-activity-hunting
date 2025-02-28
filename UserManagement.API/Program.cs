@@ -1,17 +1,15 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
-using UserManagement.API.Settings;
-using System;
+using UserManagement.API.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add MongoDB
+// Configure MongoDB
+var mongoDbSettings = builder.Configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>();
 builder.Services.AddSingleton<IMongoDatabase>(sp =>
 {
-    var client = new MongoClient("mongodb://localhost:27017");
-    return client.GetDatabase("UserManagementDB");
+    var client = new MongoClient(mongoDbSettings.ConnectionString);
+    return client.GetDatabase(mongoDbSettings.DatabaseName);
 });
 
 // Add services to the container
@@ -34,3 +32,4 @@ app.MapControllers();
 app.Urls.Add("http://0.0.0.0:8080");
 
 app.Run();
+

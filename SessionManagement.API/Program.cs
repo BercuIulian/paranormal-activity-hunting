@@ -20,9 +20,28 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Apply migrations at startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<SessionDbContext>();
+    try
+    {
+        Console.WriteLine("Applying migrations...");
+        dbContext.Database.Migrate();
+        Console.WriteLine("Migrations applied successfully");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred while applying migrations: {ex.Message}");
+        // Optionally, you might want to rethrow the exception if you want the application to fail on migration error
+        // throw;
+    }
+}
+
 app.UseAuthorization();
 app.MapControllers();
 
 app.Urls.Add("http://0.0.0.0:8080");
 
 app.Run();
+
