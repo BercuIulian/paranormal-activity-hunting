@@ -778,6 +778,12 @@ namespace SessionManagement.API.Controllers
             }
         }
 
+        [HttpGet("status")]
+        public ActionResult GetStatus()
+        {
+            return Ok(new { status = "healthy" });
+        }
+
         // Helper method for distance calculation
         private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
         {

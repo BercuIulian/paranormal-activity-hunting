@@ -4,12 +4,24 @@ from fastapi.middleware.cors import CORSMiddleware
 import httpx
 import uvicorn
 import json
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.redis import RedisBackend
+from fastapi_cache.decorator import cache
+import redis
+import os
+from datetime import timedelta
 
 app = FastAPI(title="Paranormal Activity Hunting Gateway")
 
 # Service URLs
 USER_SERVICE_URL = "http://localhost:5170"
 SESSION_SERVICE_URL = "http://localhost:5110"
+
+# Redis configuration
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
+REDIS_DB = int(os.getenv("REDIS_DB", 0))
 
 # Configure CORS
 app.add_middleware(
@@ -69,6 +81,17 @@ async def forward_request(request: Request, service_url: str, path: str) -> JSON
             content={"error": f"Internal server error: {str(e)}"},
             status_code=500
         )
+
+# Initialize Redis cache on startup
+@app.on_event("startup")
+async def startup():
+    redis_client = redis.Redis(
+        host="localhost",  # Redis server address
+        port=6379,         # Redis server port
+        db=0,              # Redis database index
+        decode_responses=True
+    )
+    FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
 
 # User Service Routes
 # Registration Related Endpoints    
@@ -145,45 +168,60 @@ async def user_login_email(request: Request):
 async def user_login_secure_questions(request: Request):
     return await forward_request(request, USER_SERVICE_URL, "user/login/secure-questions")
 
-# User Profile Related Endpoints
+# User Profile Related Endpoints - ADDING CACHE HERE
 @app.get("/user/{id}")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_user(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}")
 
 @app.get("/user/{id}/profile")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_user_profile(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/profile")
 
 @app.get("/user/{id}/xp")
+@cache(expire=60)  # Cache for 1 minute
 async def get_user_xp(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/xp")
 
 @app.get("/user/{id}/challenges-completed")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_user_challenges_completed(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/challenges-completed")
 
 @app.get("/user/{id}/inventory")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_user_inventory(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/inventory")
 
 @app.get("/user/{id}/created")
+@cache(expire=3600)  # Cache for 1 hour
 async def get_user_created(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/created")
 
-@app.get("/user/{id}/updated")
-async def get_user_updated(request: Request, id: str):
-    return await forward_request(request, USER_SERVICE_URL, f"user/{id}/updated")
+@app.put("/user/{id}/update")
+async def update_user_profile(request: Request, id: str):
+    response = await forward_request(request, USER_SERVICE_URL, f"user/{id}/update")
+    
+    # If the update was successful, invalidate the user's cache
+    if response.status_code < 400:
+        await invalidate_cache_for_user(id)
+    
+    return response
 
 @app.get("/user/{id}/admin-status")
+@cache(expire=600)  # Cache for 10 minutes
 async def get_user_admin_status(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/admin-status")
 
 @app.put("/user/{id}/update")
 async def update_user_profile(request: Request, id: str):
+    # No cache for update operations
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/update")
 
 # Challenge Related Endpoints
 @app.get("/user/challenges")
+@cache(expire=600)  # Cache for 10 minutes
 async def get_challenges(request: Request):
     return await forward_request(request, USER_SERVICE_URL, "user/challenges")
 
@@ -204,18 +242,22 @@ async def complete_challenge(request: Request):
     return await forward_request(request, USER_SERVICE_URL, "user/challenges/complete")
 
 @app.get("/user/challenges/completed")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_completed_challenges(request: Request):
     return await forward_request(request, USER_SERVICE_URL, "user/challenges/completed")
 
 @app.get("/user/challenges/daily")
+@cache(expire=3600)  # Cache for 1 hour
 async def get_daily_challenges(request: Request):
     return await forward_request(request, USER_SERVICE_URL, "user/challenges/daily")
 
 @app.get("/user/challenges/weekly")
+@cache(expire=3600 * 6)  # Cache for 6 hours
 async def get_weekly_challenges(request: Request):
     return await forward_request(request, USER_SERVICE_URL, "user/challenges/weekly")
 
 @app.get("/user/challenges/rewards")
+@cache(expire=3600)  # Cache for 1 hour
 async def get_challenge_rewards(request: Request):
     return await forward_request(request, USER_SERVICE_URL, "user/challenges/rewards")
 
@@ -258,40 +300,49 @@ async def create_session_with_challenges(request: Request):
 async def create_session_with_rules(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/create/set-rules")
 
-# Session Details Endpoints
+# Session Details Endpoints - ADDING CACHE HERE
 @app.get("/session/{id}")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_session(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}")
 
 @app.get("/session/{id}/details")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_session_details(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/details")
 
 @app.get("/session/{id}/participants")
+@cache(expire=60)  # Cache for 1 minute
 async def get_session_participants(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/participants")
 
 @app.get("/session/{id}/logs")
+@cache(expire=120)  # Cache for 2 minutes
 async def get_session_logs(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/logs")
 
 @app.get("/session/{id}/challenges")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_session_challenges(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/challenges")
 
 @app.get("/session/{id}/location")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_session_location(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/location")
 
 @app.get("/session/{id}/owner")
+@cache(expire=600)  # Cache for 10 minutes
 async def get_session_owner(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/owner")
 
 @app.get("/session/{id}/rules")
+@cache(expire=600)  # Cache for 10 minutes
 async def get_session_rules(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/rules")
 
 @app.get("/session/{id}/created")
+@cache(expire=3600)  # Cache for 1 hour
 async def get_session_created_date(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/{id}/created")
 
@@ -334,40 +385,49 @@ async def activate_session_rule(request: Request, id: str):
 async def activate_session_time(request: Request, id: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/activate/time/{id}")
 
-# Session Listing Endpoints
+# Session Listing Endpoints - ADDING CACHE HERE
 @app.get("/session/existing")
+@cache(expire=120)  # Cache for 2 minutes
 async def get_existing_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing")
 
 @app.get("/session/existing/open")
+@cache(expire=60)  # Cache for 1 minute
 async def get_open_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing/open")
 
 @app.get("/session/existing/nearby")
+@cache(expire=60)  # Cache for 1 minute
 async def get_nearby_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing/nearby")
 
 @app.get("/session/existing/private")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_private_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing/private")
 
 @app.get("/session/existing/completed")
+@cache(expire=600)  # Cache for 10 minutes
 async def get_completed_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing/completed")
 
 @app.get("/session/existing/popular")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_popular_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing/popular")
 
 @app.get("/session/existing/recently-updated")
+@cache(expire=60)  # Cache for 1 minute
 async def get_recently_updated_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing/recently-updated")
 
 @app.get("/session/existing/joinable")
+@cache(expire=60)  # Cache for 1 minute
 async def get_joinable_sessions(request: Request):
     return await forward_request(request, SESSION_SERVICE_URL, "session/existing/joinable")
 
 @app.get("/session/existing/category/{type}")
+@cache(expire=300)  # Cache for 5 minutes
 async def get_sessions_by_category(request: Request, type: str):
     return await forward_request(request, SESSION_SERVICE_URL, f"session/existing/category/{type}")
 
@@ -388,6 +448,54 @@ async def health_check():
             "session_service": SESSION_SERVICE_URL
         }
     }
+
+# Cache management endpoints
+@app.post("/cache/clear")
+async def clear_cache():
+    """
+    Clear the entire cache
+    """
+    await FastAPICache.clear()
+    return {"message": "Cache cleared successfully"}
+
+@app.post("/cache/clear/{key}")
+async def clear_cache_key(key: str):
+    """
+    Clear a specific cache key
+    """
+    redis_client = redis.Redis(
+        host=REDIS_HOST,
+        port=REDIS_PORT,
+        password=REDIS_PASSWORD,
+        db=REDIS_DB
+    )
+    redis_key = f"fastapi-cache:{key}"
+    deleted = redis_client.delete(redis_key)
+    redis_client.close()
+    
+    if deleted:
+        return {"message": f"Cache key '{key}' cleared successfully"}
+    else:
+        return {"message": f"Cache key '{key}' not found"}
+    
+async def invalidate_cache_for_user(user_id: str):
+    """
+    Invalidate cache for a specific user
+    """
+    redis_client = redis.Redis(
+        host="localhost",
+        port=6379,
+        db=0
+    )
+    
+    # Get all keys that might be related to this user
+    keys = redis_client.keys(f"fastapi-cache:*user*{user_id}*")
+    
+    # Delete all matching keys
+    if keys:
+        redis_client.delete(*keys)
+    
+    redis_client.close()
 
 if __name__ == "__main__":
     uvicorn.run(
