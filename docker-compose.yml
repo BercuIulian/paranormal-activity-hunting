@@ -8,17 +8,26 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - USER_SERVICE_URL=http://user-management-api:8080
-      - SESSION_SERVICE_URL=http://session-management-api:8080
+      - USER_SERVICE_URLS=http://user-management-api-1:8080,http://user-management-api-2:8080,http://user-management-api-3:8080
+      - SESSION_SERVICE_URLS=http://session-management-api-1:8080,http://session-management-api-2:8080,http://session-management-api-3:8080
     depends_on:
       redis:
         condition: service_healthy
-      user-management-api:
+      user-management-api-1:
         condition: service_started
-      session-management-api:
+      user-management-api-2:
+        condition: service_started
+      user-management-api-3:
+        condition: service_started
+      session-management-api-1:
+        condition: service_started
+      session-management-api-2:
+        condition: service_started
+      session-management-api-3:
         condition: service_started
 
-  session-management-api:
+  # Session Management API Replicas
+  session-management-api-1:
     build:
       context: ./SessionManagement.API
       dockerfile: Dockerfile
@@ -37,12 +46,93 @@ services:
       retries: 3
       start_period: 10s
 
-  user-management-api:
+  session-management-api-2:
+    build:
+      context: ./SessionManagement.API
+      dockerfile: Dockerfile
+    ports:
+      - "5111:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=SessionManagementDB;Username=postgres;Password=iulian
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  session-management-api-3:
+    build:
+      context: ./SessionManagement.API
+      dockerfile: Dockerfile
+    ports:
+      - "5112:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=SessionManagementDB;Username=postgres;Password=iulian
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # User Management API Replicas
+  user-management-api-1:
     build:
       context: ./UserManagement.API
       dockerfile: Dockerfile
     ports:
       - "5170:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDbSettings__ConnectionString=mongodb://mongodb:27017
+      - MongoDbSettings__DatabaseName=UserManagementDB
+      - MongoDbSettings__UsersCollection=Users
+    depends_on:
+      mongodb:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  user-management-api-2:
+    build:
+      context: ./UserManagement.API
+      dockerfile: Dockerfile
+    ports:
+      - "5171:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDbSettings__ConnectionString=mongodb://mongodb:27017
+      - MongoDbSettings__DatabaseName=UserManagementDB
+      - MongoDbSettings__UsersCollection=Users
+    depends_on:
+      mongodb:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  user-management-api-3:
+    build:
+      context: ./UserManagement.API
+      dockerfile: Dockerfile
+    ports:
+      - "5172:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - MongoDbSettings__ConnectionString=mongodb://mongodb:27017
@@ -102,3 +192,4 @@ volumes:
   redis-data:
   postgres-data:
   mongodb-data:
+

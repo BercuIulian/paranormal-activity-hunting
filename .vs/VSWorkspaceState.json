@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\ApiGateway",
     "\\SessionManagement.API",
-    "\\SessionManagement.API\\Controllers",
     "\\SessionManagement.API\\Data",
     "\\SessionManagement.API\\DTOs",
     "\\SessionManagement.API\\Properties",
+    "\\UserManagement.API",
     "\\UserManagement.API\\Configuration",
     "\\UserManagement.API\\Controllers",
     "\\UserManagement.API\\DTOs"
   ],
-  "SelectedNode": "\\SessionManagement.API\\Dockerfile",
+  "SelectedNode": "\\ApiGateway\\app.py",
   "PreviewInSolutionExplorer": false
 }
