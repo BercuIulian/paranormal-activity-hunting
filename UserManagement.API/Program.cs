@@ -1,4 +1,9 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using UserManagement.API.Settings;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +28,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
+app.Urls.Add("http://0.0.0.0:8080");
 
 app.Run();

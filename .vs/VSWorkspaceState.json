@@ -2,13 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\ApiGateway",
-    "\\SessionManagement.API",
-    "\\SessionManagement.API\\Models",
+    "\\SessionManagement.API\\Controllers",
+    "\\SessionManagement.API\\Data",
+    "\\SessionManagement.API\\DTOs",
+    "\\SessionManagement.API\\Properties",
     "\\UserManagement.API",
+    "\\UserManagement.API\\Configuration",
     "\\UserManagement.API\\Controllers",
-    "\\UserManagement.API\\Models",
-    "\\UserManagement.API\\Properties"
+    "\\UserManagement.API\\DTOs"
   ],
-  "SelectedNode": "\\UserManagement.API\\Controllers\\UserController.cs",
+  "SelectedNode": "\\UserManagement.API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

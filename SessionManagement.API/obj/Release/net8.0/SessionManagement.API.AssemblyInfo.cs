@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SessionManagement.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbe0b0e2f049701f817c75dc02685d956b8d4042")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3976a2dc8c0fb238d563f94ec27223d7564897e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SessionManagement.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SessionManagement.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

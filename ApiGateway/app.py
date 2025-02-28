@@ -14,13 +14,13 @@ from datetime import timedelta
 app = FastAPI(title="Paranormal Activity Hunting Gateway")
 
 # Service URLs
-USER_SERVICE_URL = "http://localhost:5170"
-SESSION_SERVICE_URL = "http://localhost:5110"
+USER_SERVICE_URL = "http://user-management-api:8080"
+SESSION_SERVICE_URL = "http://session-management-api:8080"
 
 # Redis configuration
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+REDIS_HOST = os.getenv("REDIS_HOST", "redis")
 REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "")
 REDIS_DB = int(os.getenv("REDIS_DB", 0))
 
 # Configure CORS
@@ -86,9 +86,10 @@ async def forward_request(request: Request, service_url: str, path: str) -> JSON
 @app.on_event("startup")
 async def startup():
     redis_client = redis.Redis(
-        host="localhost",  # Redis server address
-        port=6379,         # Redis server port
-        db=0,              # Redis database index
+        host=REDIS_HOST,  # Redis server address
+        port=REDIS_PORT,         # Redis server port
+        db=REDIS_DB,              # Redis database index
+        password=REDIS_PASSWORD,
         decode_responses=True
     )
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
@@ -199,15 +200,10 @@ async def get_user_inventory(request: Request, id: str):
 async def get_user_created(request: Request, id: str):
     return await forward_request(request, USER_SERVICE_URL, f"user/{id}/created")
 
-@app.put("/user/{id}/update")
-async def update_user_profile(request: Request, id: str):
-    response = await forward_request(request, USER_SERVICE_URL, f"user/{id}/update")
-    
-    # If the update was successful, invalidate the user's cache
-    if response.status_code < 400:
-        await invalidate_cache_for_user(id)
-    
-    return response
+@app.get("/user/{id}/updated")
+@cache(expire=300)  # Cache for 5 minutes
+async def get_user_updated(request: Request, id: str):
+    return await forward_request(request, USER_SERVICE_URL, f"user/{id}/updated")
 
 @app.get("/user/{id}/admin-status")
 @cache(expire=600)  # Cache for 10 minutes
