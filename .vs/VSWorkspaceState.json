@@ -6,7 +6,6 @@
     "\\SessionManagement.API\\Data",
     "\\SessionManagement.API\\DTOs",
     "\\SessionManagement.API\\Properties",
-    "\\UserManagement.API",
     "\\UserManagement.API\\Configuration",
     "\\UserManagement.API\\Controllers",
     "\\UserManagement.API\\DTOs"
