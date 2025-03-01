@@ -26,6 +26,37 @@ services:
       session-management-api-3:
         condition: service_started
 
+  # Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    depends_on:
+      - api-gateway
+      - session-management-api-1
+      - session-management-api-2
+      - session-management-api-3
+      - user-management-api-1
+      - user-management-api-2
+      - user-management-api-3
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3100:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
   # Session Management API Replicas
   session-management-api-1:
     build:
@@ -192,4 +223,5 @@ volumes:
   redis-data:
   postgres-data:
   mongodb-data:
+  grafana-data:
 

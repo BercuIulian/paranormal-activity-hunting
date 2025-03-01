@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 import uvicorn
@@ -12,6 +12,10 @@ import os
 from datetime import timedelta
 import random
 from typing import List
+import time
+# Import Prometheus client
+from prometheus_client import Counter, Histogram, Gauge, Summary, generate_latest, CONTENT_TYPE_LATEST
+from functools import wraps
 
 app = FastAPI(title="Paranormal Activity Hunting Gateway")
 
@@ -40,6 +44,49 @@ app.add_middleware(
 
 # Create HTTP client
 client = httpx.AsyncClient()
+
+# Define Prometheus metrics
+REQUESTS = Counter(
+    'api_gateway_requests_total', 
+    'Total count of requests by method and endpoint',
+    ['method', 'endpoint', 'service']
+)
+
+RESPONSES = Counter(
+    'api_gateway_responses_total', 
+    'Total count of responses by method, endpoint and status',
+    ['method', 'endpoint', 'status', 'service']
+)
+
+LATENCY = Histogram(
+    'api_gateway_request_latency_seconds', 
+    'Request latency in seconds',
+    ['method', 'endpoint', 'service']
+)
+
+ACTIVE_REQUESTS = Gauge(
+    'api_gateway_active_requests', 
+    'Number of active requests',
+    ['method', 'service']
+)
+
+CACHE_HITS = Counter(
+    'api_gateway_cache_hits_total',
+    'Total count of cache hits',
+    ['endpoint']
+)
+
+CACHE_MISSES = Counter(
+    'api_gateway_cache_misses_total',
+    'Total count of cache misses',
+    ['endpoint']
+)
+
+SERVICE_AVAILABILITY = Gauge(
+    'api_gateway_service_availability',
+    'Service availability status (1=up, 0=down)',
+    ['service_name', 'instance']
+)
 
 # Function to get the next service URL using Round Robin
 def get_next_user_service_url() -> str:
@@ -75,26 +122,54 @@ async def forward_request(request: Request, service_type: str, path: str) -> JSO
         }
         headers["Content-Type"] = "application/json"
         
-        # Forward the request
-        async with httpx.AsyncClient() as client:
-            response = await client.request(
-                method=request.method,
-                url=target_url,
-                headers=headers,
-                content=body,
-                params=request.query_params,
-            )
-            
-            # Try to parse JSON response
-            try:
-                response_data = response.json() if response.content else None
-            except json.JSONDecodeError:
-                response_data = {"message": response.text}
-            
-            return JSONResponse(
-                content=response_data,
-                status_code=response.status_code
-            )
+        # Increment request counter
+        REQUESTS.labels(method=request.method, endpoint=path, service=service_type).inc()
+        
+        # Track active requests
+        ACTIVE_REQUESTS.labels(method=request.method, service=service_type).inc()
+        
+        # Track request latency
+        start_time = time.time()
+        
+        try:
+            # Forward the request
+            async with httpx.AsyncClient() as client:
+                response = await client.request(
+                    method=request.method,
+                    url=target_url,
+                    headers=headers,
+                    content=body,
+                    params=request.query_params,
+                )
+                
+                # Try to parse JSON response
+                try:
+                    response_data = response.json() if response.content else None
+                except json.JSONDecodeError:
+                    response_data = {"message": response.text}
+                
+                # Record latency
+                LATENCY.labels(method=request.method, endpoint=path, service=service_type).observe(time.time() - start_time)
+                
+                # Record response
+                RESPONSES.labels(
+                    method=request.method, 
+                    endpoint=path, 
+                    status=response.status_code,
+                    service=service_type
+                ).inc()
+                
+                # Decrement active requests
+                ACTIVE_REQUESTS.labels(method=request.method, service=service_type).dec()
+                
+                return JSONResponse(
+                    content=response_data,
+                    status_code=response.status_code
+                )
+        except Exception as e:
+            # Decrement active requests in case of error
+            ACTIVE_REQUESTS.labels(method=request.method, service=service_type).dec()
+            raise e
             
     except httpx.RequestError as e:
         # If a service instance is down, try the next one
@@ -105,15 +180,85 @@ async def forward_request(request: Request, service_type: str, path: str) -> JSO
             # Try another session service instance
             return await forward_request(request, service_type, path)
         else:
+            # Decrement active requests in case of error
+            ACTIVE_REQUESTS.labels(method=request.method, service=service_type).dec()
+            
+            # Record response
+            RESPONSES.labels(
+                method=request.method, 
+                endpoint=path, 
+                status=503,
+                service=service_type
+            ).inc()
+            
             return JSONResponse(
                 content={"error": f"Service unavailable: {str(e)}"},
                 status_code=503
             )
     except Exception as e:
+        # Decrement active requests in case of error
+        ACTIVE_REQUESTS.labels(method=request.method, service=service_type).dec()
+        
+        # Record response
+        RESPONSES.labels(
+            method=request.method, 
+            endpoint=path, 
+            status=500,
+            service=service_type
+        ).inc()
+        
         return JSONResponse(
             content={"error": f"Internal server error: {str(e)}"},
             status_code=500
         )
+
+from functools import wraps
+
+def tracked_cache(expire=300):
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            # Extract request object
+            request = next((arg for arg in args if isinstance(arg, Request)), None)
+            if request is None:
+                # If no request object, just call the original function
+                return await func(*args, **kwargs)
+
+            # Construct cache key using path and query parameters
+            path_params = request.path_params
+            query_params = request.query_params
+            cache_key = f"{func.__name__}:{str(path_params)}:{str(query_params)}"
+
+            # Check if result is in cache
+            redis_client = redis.Redis(
+                host=REDIS_HOST,
+                port=REDIS_PORT,
+                password=REDIS_PASSWORD,
+                db=REDIS_DB
+            )
+            
+            cached_result = redis_client.get(f"fastapi-cache:{cache_key}")
+            if cached_result:
+                CACHE_HITS.labels(endpoint=func.__name__).inc()
+                redis_client.close()
+                return JSONResponse(content=json.loads(cached_result))
+            
+            # If not in cache, call the original function
+            CACHE_MISSES.labels(endpoint=func.__name__).inc()
+            result = await func(*args, **kwargs)
+
+            # Cache the result
+            redis_client.setex(
+                f"fastapi-cache:{cache_key}",
+                expire,
+                json.dumps(result.body.decode())
+            )
+            redis_client.close()
+
+            return result
+        
+        return wrapper
+    return decorator
 
 # Initialize Redis cache on startup
 @app.on_event("startup")
@@ -125,6 +270,18 @@ async def startup():
         decode_responses=True
     )
     FastAPICache.init(RedisBackend(redis_client), prefix="fastapi-cache")
+    
+    # Initialize service availability metrics
+    for i, url in enumerate(USER_SERVICE_URLS):
+        SERVICE_AVAILABILITY.labels(service_name="user-management", instance=f"user-management-api-{i+1}").set(1)
+    
+    for i, url in enumerate(SESSION_SERVICE_URLS):
+        SERVICE_AVAILABILITY.labels(service_name="session-management", instance=f"session-management-api-{i+1}").set(1)
+
+# Expose Prometheus metrics endpoint
+@app.get("/metrics")
+async def metrics():
+    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
 # User Service Routes
 # Registration Related Endpoints    
@@ -203,42 +360,42 @@ async def user_login_secure_questions(request: Request):
 
 # User Profile Related Endpoints - ADDING CACHE HERE
 @app.get("/user/{id}")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_user(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}")
 
 @app.get("/user/{id}/profile")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_user_profile(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}/profile")
 
 @app.get("/user/{id}/xp")
-@cache(expire=60)  # Cache for 1 minute
+@tracked_cache(expire=60)  # Cache for 1 minute
 async def get_user_xp(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}/xp")
 
 @app.get("/user/{id}/challenges-completed")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_user_challenges_completed(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}/challenges-completed")
 
 @app.get("/user/{id}/inventory")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_user_inventory(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}/inventory")
 
 @app.get("/user/{id}/created")
-@cache(expire=3600)  # Cache for 1 hour
+@tracked_cache(expire=3600)  # Cache for 1 hour
 async def get_user_created(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}/created")
 
 @app.get("/user/{id}/updated")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_user_updated(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}/updated")
 
 @app.get("/user/{id}/admin-status")
-@cache(expire=600)  # Cache for 10 minutes
+@tracked_cache(expire=600)  # Cache for 10 minutes
 async def get_user_admin_status(request: Request, id: str):
     return await forward_request(request, "user", f"user/{id}/admin-status")
 
@@ -249,7 +406,7 @@ async def update_user_profile(request: Request, id: str):
 
 # Challenge Related Endpoints
 @app.get("/user/challenges")
-@cache(expire=600)  # Cache for 10 minutes
+@tracked_cache(expire=600)  # Cache for 10 minutes
 async def get_challenges(request: Request):
     return await forward_request(request, "user", "user/challenges")
 
@@ -270,22 +427,22 @@ async def complete_challenge(request: Request):
     return await forward_request(request, "user", "user/challenges/complete")
 
 @app.get("/user/challenges/completed")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_completed_challenges(request: Request):
     return await forward_request(request, "user", "user/challenges/completed")
 
 @app.get("/user/challenges/daily")
-@cache(expire=3600)  # Cache for 1 hour
+@tracked_cache(expire=3600)  # Cache for 1 hour
 async def get_daily_challenges(request: Request):
     return await forward_request(request, "user", "user/challenges/daily")
 
 @app.get("/user/challenges/weekly")
-@cache(expire=3600 * 6)  # Cache for 6 hours
+@tracked_cache(expire=3600 * 6)  # Cache for 6 hours
 async def get_weekly_challenges(request: Request):
     return await forward_request(request, "user", "user/challenges/weekly")
 
 @app.get("/user/challenges/rewards")
-@cache(expire=3600)  # Cache for 1 hour
+@tracked_cache(expire=3600)  # Cache for 1 hour
 async def get_challenge_rewards(request: Request):
     return await forward_request(request, "user", "user/challenges/rewards")
 
@@ -326,47 +483,47 @@ async def create_session_with_rules(request: Request):
 
 # Session Details Endpoints - ADDING CACHE HERE
 @app.get("/session/{id}")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_session(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}")
 
 @app.get("/session/{id}/details")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_session_details(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/details")
 
 @app.get("/session/{id}/participants")
-@cache(expire=60)  # Cache for 1 minute
+@tracked_cache(expire=60)  # Cache for 1 minute
 async def get_session_participants(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/participants")
 
 @app.get("/session/{id}/logs")
-@cache(expire=120)  # Cache for 2 minutes
+@tracked_cache(expire=120)  # Cache for 2 minutes
 async def get_session_logs(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/logs")
 
 @app.get("/session/{id}/challenges")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_session_challenges(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/challenges")
 
 @app.get("/session/{id}/location")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_session_location(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/location")
 
 @app.get("/session/{id}/owner")
-@cache(expire=600)  # Cache for 10 minutes
+@tracked_cache(expire=600)  # Cache for 10 minutes
 async def get_session_owner(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/owner")
 
 @app.get("/session/{id}/rules")
-@cache(expire=600)  # Cache for 10 minutes
+@tracked_cache(expire=600)  # Cache for 10 minutes
 async def get_session_rules(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/rules")
 
 @app.get("/session/{id}/created")
-@cache(expire=3600)  # Cache for 1 hour
+@tracked_cache(expire=3600)  # Cache for 1 hour
 async def get_session_created_date(request: Request, id: str):
     return await forward_request(request, "session", f"session/{id}/created")
 
@@ -411,47 +568,47 @@ async def activate_session_time(request: Request, id: str):
 
 # Session Listing Endpoints - ADDING CACHE HERE
 @app.get("/session/existing")
-@cache(expire=120)  # Cache for 2 minutes
+@tracked_cache(expire=120)  # Cache for 2 minutes
 async def get_existing_sessions(request: Request):
     return await forward_request(request, "session", "session/existing")
 
 @app.get("/session/existing/open")
-@cache(expire=60)  # Cache for 1 minute
+@tracked_cache(expire=60)  # Cache for 1 minute
 async def get_open_sessions(request: Request):
     return await forward_request(request, "session", "session/existing/open")
 
 @app.get("/session/existing/nearby")
-@cache(expire=60)  # Cache for 1 minute
+@tracked_cache(expire=60)  # Cache for 1 minute
 async def get_nearby_sessions(request: Request):
     return await forward_request(request, "session", "session/existing/nearby")
 
 @app.get("/session/existing/private")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_private_sessions(request: Request):
     return await forward_request(request, "session", "session/existing/private")
 
 @app.get("/session/existing/completed")
-@cache(expire=600)  # Cache for 10 minutes
+@tracked_cache(expire=600)  # Cache for 10 minutes
 async def get_completed_sessions(request: Request):
     return await forward_request(request, "session", "session/existing/completed")
 
 @app.get("/session/existing/popular")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_popular_sessions(request: Request):
     return await forward_request(request, "session", "session/existing/popular")
 
 @app.get("/session/existing/recently-updated")
-@cache(expire=60)  # Cache for 1 minute
+@tracked_cache(expire=60)  # Cache for 1 minute
 async def get_recently_updated_sessions(request: Request):
     return await forward_request(request, "session", "session/existing/recently-updated")
 
 @app.get("/session/existing/joinable")
-@cache(expire=60)  # Cache for 1 minute
+@tracked_cache(expire=60)  # Cache for 1 minute
 async def get_joinable_sessions(request: Request):
     return await forward_request(request, "session", "session/existing/joinable")
 
 @app.get("/session/existing/category/{type}")
-@cache(expire=300)  # Cache for 5 minutes
+@tracked_cache(expire=300)  # Cache for 5 minutes
 async def get_sessions_by_category(request: Request, type: str):
     return await forward_request(request, "session", f"session/existing/category/{type}")
 
@@ -473,18 +630,40 @@ async def health_check():
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(f"{url}/health", timeout=2.0)
-                user_services_status[f"user-management-api-{i+1}"] = "healthy" if response.status_code == 200 else "unhealthy"
+                is_healthy = response.status_code == 200
+                user_services_status[f"user-management-api-{i+1}"] = "healthy" if is_healthy else "unhealthy"
+                # Update service availability metric
+                SERVICE_AVAILABILITY.labels(
+                    service_name="user-management", 
+                    instance=f"user-management-api-{i+1}"
+                ).set(1 if is_healthy else 0)
         except Exception:
             user_services_status[f"user-management-api-{i+1}"] = "unreachable"
+            # Update service availability metric
+            SERVICE_AVAILABILITY.labels(
+                service_name="user-management", 
+                instance=f"user-management-api-{i+1}"
+            ).set(0)
     
     # Check session services
     for i, url in enumerate(SESSION_SERVICE_URLS):
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(f"{url}/health", timeout=2.0)
-                session_services_status[f"session-management-api-{i+1}"] = "healthy" if response.status_code == 200 else "unhealthy"
+                is_healthy = response.status_code == 200
+                session_services_status[f"session-management-api-{i+1}"] = "healthy" if is_healthy else "unhealthy"
+                # Update service availability metric
+                SERVICE_AVAILABILITY.labels(
+                    service_name="session-management", 
+                    instance=f"session-management-api-{i+1}"
+                ).set(1 if is_healthy else 0)
         except Exception:
             session_services_status[f"session-management-api-{i+1}"] = "unreachable"
+            # Update service availability metric
+            SERVICE_AVAILABILITY.labels(
+                service_name="session-management", 
+                instance=f"session-management-api-{i+1}"
+            ).set(0)
     
     return {
         "status": "healthy",

@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "api-gateway"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["api-gateway:8000"]
+
+  - job_name: "session-management"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets:
+          - "session-management-api-1:8080"
+          - "session-management-api-2:8080"
+          - "session-management-api-3:8080"
+
+  - job_name: "user-management"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets:
+          - "user-management-api-1:8080"
+          - "user-management-api-2:8080"
+          - "user-management-api-3:8080"
